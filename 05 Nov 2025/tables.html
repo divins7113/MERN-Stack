@@ -1,0 +1,248 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tables</title>
+</head>
+<!--
+<style>
+    table, th, td {
+      border:1px solid black;
+    }
+
+    .dotted th, .dotted td { border-style: dotted; }
+    .dashed th, .dashed td { border-style: dashed; }
+    .solid th, .solid td { border-style: solid; }
+
+</style>
+    
+<body>
+    
+    <h2>A basic HTML table</h2>
+    
+    <table class="dotted" style="width:100%">
+      <tr>
+        <th>Company</th>
+        <th>Contact</th>
+        <th>Country</th>
+      </tr>
+      <tr>
+        <td>Alfreds Futterkiste</td>
+        <td>Maria Anders</td>
+        <td>Germany</td>
+      </tr>
+      <tr>
+        <td>Centro comercial Moctezuma</td>
+        <td>Francisco Chang</td>
+        <td>Mexico</td>
+      </tr>
+    </table>
+
+    <p>To understand the example better, we have added borders to the table.</p>
+
+    <table class="dashed" style="width:100%">
+        <tr>
+          <th>Company</th>
+          <th>Contact</th>
+          <th>Country</th>
+        </tr>
+        <tr>
+          <td>Alfreds Futterkiste</td>
+          <td>Maria Anders</td>
+          <td>Germany</td>
+        </tr>
+    </table><br>
+
+        <table class="solid" style="width:100%">
+            <tr>
+              <th style="width:70%">Firstname</th>
+              <th>Lastname</th>
+              <th>Age</th>
+            </tr>
+            <tr>
+              <td>Jill</td>
+              <td>Smith</td>
+              <td>50</td>
+            </tr>
+            <tr>
+              <td>Eve</td>
+              <td>Jackson</td>
+              <td>94</td>
+            </tr>
+        </table>
+
+          <h2>Set the height of the second row to 200 pixels</h2>
+
+          <table style="width:100%">
+            <tr>
+              <th>Firstname</th>
+              <th>Lastname</th> 
+              <th>Age</th>
+            </tr>
+            <tr style="height:100px">
+              <td>Jill</td>
+              <td>Smith</td>
+              <td>50</td>
+            </tr>
+            <tr>
+              <td>Eve</td>
+              <td>Jackson</td>
+              <td>94</td>
+            </tr>
+            <tr>
+              <td>John</td>
+              <td>Doe</td>
+              <td>80</td>
+            </tr>
+          </table>  
+
+</body>
+-->
+
+<!--
+<style>
+    table {
+      border-spacing: 300px;
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding-top: 10px;
+      padding-bottom: 20px;
+      padding-left: 30px;
+      padding-right: 40px;
+    }
+    </style>
+    </head>
+    <body>
+    
+    <h2>Cellpadding - top - bottom - left - right </h2>
+    <p>We can specify different padding for all fours sides of the cell content.</p>
+    
+    <table style="width:100%">
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th> 
+        <th>Age</th>
+      </tr>
+      <tr>
+        <td>Jill</td>
+        <td>Smith</td>
+        <td>50</td>
+      </tr>
+      <tr>
+        <td>Eve</td>
+        <td>Jackson</td>
+        <td>94</td>
+      </tr>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>80</td>
+      </tr>
+    </table>
+    <br>
+    <h2>Colspan</h2>
+    <table>
+        <tr>
+          <th colspan="2">Name</th>
+          <th>Age</th>
+        </tr>
+        <tr>
+          <td>Jill</td>
+          <td>Smith</td>
+          <td>43</td>
+        </tr>
+        <tr>
+          <td>Eve</td>
+          <td>Jackson</td>
+          <td>57</td>
+        </tr>
+      </table>
+      <br>
+      <h2>Rowspan</h2>
+      <table>
+        <tr>
+          <th>Name</th>
+          <td>Jill</td>
+        </tr>
+        <tr>
+          <th rowspan="2">Phone</th>
+          <td>555-1234</td>
+        </tr>
+        <tr>
+          <td>555-8745</td>
+      </tr>
+      </table>
+         
+    
+    </body>
+
+
+<style>
+  table {
+  border-collapse: collapse;
+  width: 100%;
+  }
+
+  th, td {
+  text-align: left;
+  padding: 8px;
+  }
+
+  tr:nth-child(even) {
+  background-color: #D6EEEE;
+  }
+</style>
+<body>
+    <table >
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th> 
+          <th>Age</th>
+        </tr>
+        <tr >
+          <td>Jill</td>
+          <td>Smith</td>
+          <td>50</td>
+        </tr>
+        <tr>
+          <td>Eve</td>
+          <td>Jackson</td>
+          <td>94</td>
+        </tr>
+        <tr>
+          <td>John</td>
+          <td>Doe</td>
+          <td>80</td>
+        </tr>
+      </table>
+</body>
+
+-->
+
+<style>
+    
+    table, th, td {
+      border: 1px solid black;
+    }
+    
+    th:nth-child(-n+2), td:nth-child(-n+2) {
+      background-color: red;
+    }
+</style>
+
+<body>
+
+<table>
+  <tr><th>A</th><th>B</th><th>C</th></tr>
+  <tr><td>1</td><td>2</td><td>3</td></tr>
+  <tr><td>4</td><td>5</td><td>6</td></tr>
+</table>
+
+</body>
+
+</html>
