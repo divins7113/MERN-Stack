@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Task2</title>
+
+        <style>
+
+            .sty1 {
+                max-width: auto; margin: 10px; text-align: center;
+            }
+             
+            .sty2 {
+                text-align: left;
+                background: rgb(37, 35, 35);
+                padding: 10px;
+                text-decoration: none;
+                border-radius: 2px;
+                width: 100%; 
+            }
+            .sty2 a {
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1px;
+            text-decoration: none;
+            }
+            .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem;
+            }
+            .box {
+            margin: 0 auto;
+            width: 800px;    
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+            }
+            .box h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #848282;
+            }
+        
+            .item {
+            margin-bottom: 1.8rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px dashed #ddd;
+            }
+            .item:last-child { 
+            border-bottom: none; margin-bottom: 0; padding-bottom: 0; 
+            }
+            .item h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            }
+            .item p {
+            font-style: italic;    
+            color: #555;
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+            }
+            .read-more {
+            color: #3f97ef;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            }
+            .footer {
+            background: #222;
+            color: #aaa;
+            text-align: center;
+            padding: 1rem;
+            display: block;
+            font-size: 0.85rem;
+            margin-top: 5rem;
+            }
+        </style>
+    </head>
+</head>
+<body>
+    <h1 class="sty1" style="color: #1c1b1b;">Welcome to News & Articles</h1>
+    <header>
+        <div class="sty2">
+            <a href="#">Home</a>
+            <a href="#">Articles</a>
+            <a href="#">News</a>
+        </div>
+    </header>
+
+    <div>
+
+        <div class="grid" style="grid-template-columns: 1fr;"></div>
+            <div class="box">
+                <h2 style="color: #555;">Latest Articles</h2>
+                <div class="item">
+                    <h3>Understanding the Basics of HTML</h3>
+                    <p>This article covers the fundamental concepts of HTML, including elements, attributes, and structure.</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+                <div class="item">
+                    <h3>CSS for Beginners</h3>
+                    <p>Learn how to style your web pages using CSS, including selectors, properties, and values.</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <h2 style="color: #555;">Latest News</h2>
+                <div class="item">
+                    <h3>Web Development Trends in 2025</h3>
+                    <p>Discover the latest trends in web development, including frameworks, tools, and best practices.</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+                <div class="item">
+                    <h3>JavaScript Updates</h3>
+                    <p>Stay updated with the latest features and improvements in JavaScript.</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 News & Articles. All rights reserved.</p>
+    </div>    
+</html>    
+  
