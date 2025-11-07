@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Colors Example</title>
+</head>
+<style>
+    .background-example {
+        background-color: lightblue;
+        background-image: url('example.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background: lightblue url('example.jpg') no-repeat fixed center;
+    }
+</style>
+<body>
+    <div class="background-example">
+        <p><h1>This is an example of background properties.</h1></p>
+    </div>
+    <h1 class="rgb-color">...</h1>
+    <h1 style="background-color:#ff6347;">...</h1>
+    <h1 style="background-color:rgb(255, 99, 71);">...</h1>
+    <h1 style="background-color:hsl(9, 100%, 64%);">...</h1>
+
+    <h1 style="background-color:rgba(255, 99, 71, 0.5);">...</h1>
+    <h1 style="background-color:hsla(9, 100%, 64%, 0.5);">...</h1>
+</body>    
+</html>

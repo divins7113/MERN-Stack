@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors Example</title>
+    <style>
+        /* Universal Selector */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Type Selector */
+        p {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+        }
+        /* Class Selector */
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+        /* ID Selector */
+        #unique {
+            color: blue;
+            text-decoration: underline;
+        }
+        /* Descendant Selector */
+        div p {
+            font-style: italic;
+        }
+        /* Attribute Selector */
+        a[target="_blank"] {
+            color: red;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>CSS Selectors</h1>
+    <h2>Examples</h2>
+    <p>This is a paragraph.</p>
+    <p class="highlight">This paragraph is highlighted.</p>
+    <p id="unique">This paragraph has a unique style.</p>
+    <div>
+        <p>This is a paragraph inside a div.</p>
+    </div>
+    <a href="https://example.com" target="_blank">External Link</a>
+</body>
+</html>
