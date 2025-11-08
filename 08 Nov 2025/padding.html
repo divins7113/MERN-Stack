@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS padding properties</title>
+</head>
+<!-- Margin is for outside of the border. Padding is for inside of the border.-->
+<style>
+    div.ex3{
+        border: 2px solid black;
+        background-color: lightblue;
+        text-align: center;
+        margin-right: 400px;
+        padding-top: 75px;
+        padding-right: 20px;
+        padding-bottom: 75px;
+        padding-left: 20px;
+    }
+
+    div.ex1{
+        width:3000px;
+        background-color: lightgreen;
+    }
+
+    div.ex2{
+        width:300px;
+        padding: 50px;
+        box-sizing: border-box;
+        background-color: lightyellow;
+    }
+</style>
+
+<body>
+    <h2>Using individual padding properties</h2>
+    <div class="ex3">This div element has a top padding of 50px, a right padding of 30px, a bottom padding of 50px, and a left padding of 80px.</div>
+   
+    <p><h2>padding and element width using Box Sizing</h2></p>
+    <div class="ex1">This div element has a width of 300px and padding of 50px on all sides. The total width including padding is 400px.</div><br>
+    <div class="ex2">This div element has a width of 300px and padding of 50px on all sides. The total width including padding is still 300px because of box-sizing: border-box.</div>
+</body>    
+</html>

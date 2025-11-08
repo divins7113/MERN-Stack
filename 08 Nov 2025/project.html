@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Attendance Table</title>
+    <style>
+        body{
+            text-align: center;
+            background-color: lightgoldenrodyellow;
+            margin: 40px;
+        }
+        h1 { color: #c0392b; margin-bottom: 50px; }
+        h3 { color: #c0392b; margin: 0 0 30px; }
+        table{
+            margin:auto;
+            text-align: left;
+            width: 80%;
+            height: 300px;
+            border: 2px solid #c0392b;
+            border-radius: 20px;
+            border-collapse: separate;
+            border-spacing: 1px;
+            
+        }
+        th{
+            background-color: rgb(255, 122, 122);
+            padding: 15px;
+            border-bottom: 3px solid #c0392b;
+            
+        }
+        th, td {
+            padding: 15px;
+            border: 1px solid red;        /* ← NEW: horizontal + vertical borders */
+            text-align: left;
+            padding-left: 10px;
+        }
+        td{
+            background-color: rgb(255, 190, 190);
+            border-bottom: 1px solid #ddd;
+            
+        }
+    </style>
+</head>
+<body>
+
+    <h1><b>Employee Attendance Table</b></h1>
+    <h3>Attendance Records</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Attendance Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>12345</td>
+                <td>example1</td>
+                <td>IT</td>
+                <td >Present</td>
+            </tr>
+            <tr>
+                <td>67890</td>
+                <td>example2</td>
+                <td>HR</td>
+                <td>Absent</td>
+            </tr>
+            <tr>
+                <td>54321</td>
+                <td>example3</td>
+                <td>Finance</td>
+                <td>Present</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
