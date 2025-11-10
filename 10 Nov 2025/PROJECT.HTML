@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout Design</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: green;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 100px auto;
+      gap: 5px;
+      padding: 5px;
+    }
+
+    .con1 {
+      grid-column: 1 / span 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+    }
+
+    .con1 div {
+      background-color: peachpuff;
+    }
+
+    .con2 {
+      background-color: lightgoldenrodyellow;
+      position: relative;
+    }
+
+    .con3 {
+      width: 80px;
+      height: 80px;
+      background-color: yellowgreen;
+      position: absolute;
+      top: 40%;
+      left: 40%;
+    }
+
+    .con4 {
+      display: grid;
+      gap: 5px;
+    }
+
+    .con4 div {
+      background-color: lavender;
+    }
+  </style>
+</head>
+<body>
+  <div class="con1">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="con2">
+    <div class="con3"></div>
+  </div>
+  <div class="con4">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</body>
+</html>
