@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>CSS Grid Properties</title>
+    <style>
+        .container {
+            display: grid;
+            align-content: center;/* Vertically centers the entire grid content within the container if there's extra space */
+            grid-template-columns: 500px 400px auto; /* Defines 3 flexible columns that automatically size based on content if auto auto auto */
+            grid-template-rows: 50px 50px;/* Defines 2 flexible rows that automatically size based on content */
+            justify-content: center;/* Horizontally centers the entire grid within the container */
+            align-items: self-end;/* Aligns grid items to the start (top) of their grid cells vertically */
+            column-gap: 1cap;/* Sets the gap between columns (1cap = 1 capital letter height, useful for typography-based spacing) */
+            /*gap: 10px;/* Sets both row-gap and column-gap to 10px (overrides column-gap if not careful) */
+            row-gap: 10px;/* Specifically sets the gap between rows to 10px (redundant due to 'gap' above) */
+            background-color: lightgray;
+            padding: 10px;
+
+        }
+
+        
+        .container div {
+            background-color: #f1f1f1;
+            border: 1px solid black;
+            padding: 10px;
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Grid Properties</h1>
+
+    <p>This example demonstrates various CSS Grid properties applied to the grid container.</p>
+
+    <!-- Grid container with 5 items (will wrap based on defined rows/columns) -->
+    <div class="container">
+      <div>Item 1</div>
+      <div>Item 2</div>
+      <div>Item 3</div>
+      <div>Item 4</div>
+      <div>Item 5</div>
+    </div>
+</body>
+</html>
