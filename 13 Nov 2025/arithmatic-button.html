@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arithmetic Operation</title>
+</head>
+<body>
+  <h2>Choose Arithmetic Operation</h2>
+
+  <button onclick="calculate('add')">Add</button>
+  <button onclick="calculate('subtract')">Subtract</button>
+  <button onclick="calculate('multiply')">Multiply</button>
+  <button onclick="calculate('divide')">Divide</button>
+
+  <p id="result">Result: </p>
+
+  <script>
+    // Numbers coming from backend
+    const num1 = 20;
+    const num2 = 4;
+
+    function calculate(operation) {
+      let result;
+
+      if (operation === 'add') {
+        result = num1 + num2;
+      } else if (operation === 'subtract') {
+        result = num1 - num2;
+      } else if (operation === 'multiply') {
+        result = num1 * num2;
+      } else if (operation === 'divide') {
+        result = num2 !== 0 ? num1 / num2 : 'Cannot divide by zero';
+      } else {
+        result = 'Invalid operation';
+      }
+
+      document.getElementById('result').innerText = 'Result: ' + result;
+    }
+  </script>
+</body>
+</html>
