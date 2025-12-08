@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Mongo CRUD</title>
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --text-muted: #6b7280;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            display: grid;
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        h1, h2 {
+            margin-top: 0;
+            color: var(--text-color);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        input {
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: border-color 0.15s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-muted);
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            display: none;
+        }
+
+        .success {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .error {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        #items-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .item {
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Node.js Mongo CRUD</h1>
+
+        <div class="card">
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('register')">Register</div>
+                <div class="tab" onclick="switchTab('login')">Login</div>
+                <div class="tab" onclick="switchTab('items')">Items</div>
+            </div>
+
+            <div id="message"></div>
+
+            <!-- Register Form -->
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="reg-name">Name</label>
+                    <input type="text" id="reg-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email</label>
+                    <input type="email" id="reg-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Password</label>
+                    <input type="password" id="reg-password" required>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+
+            <!-- Login Form -->
+            <form id="login-form" class="hidden">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+
+            <!-- Items View -->
+            <div id="items-view" class="hidden">
+                <div style="margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                    <h3>Items List</h3>
+                    <button onclick="fetchItems()" style="width: auto;">Refresh</button>
+                </div>
+                <ul id="items-list">
+                    <!-- Items will be populated here -->
+                </ul>
+                <p id="no-items" class="hidden" style="color: var(--text-muted); text-align: center;">No items found.</p>
+                
+                <hr style="margin: 2rem 0; border: 0; border-top: 1px solid #e5e7eb;">
+                
+                <h3>Add New Item</h3>
+                <form id="add-item-form">
+                    <div class="form-group">
+                        <label for="item-name">Item Name</label>
+                        <input type="text" id="item-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="item-description">Description</label>
+                        <input type="text" id="item-description">
+                    </div>
+                    <button type="submit">Add Item</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null; // Store credentials for Basic Auth
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => {
+                if (t.textContent.toLowerCase() === tabName) t.classList.add('active');
+            });
+
+            document.getElementById('register-form').classList.add('hidden');
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('items-view').classList.add('hidden');
+
+            if (tabName === 'register') document.getElementById('register-form').classList.remove('hidden');
+            if (tabName === 'login') document.getElementById('login-form').classList.remove('hidden');
+            if (tabName === 'items') {
+                document.getElementById('items-view').classList.remove('hidden');
+                if (currentUser) fetchItems();
+                else showMessage('Please login first to view items', 'error');
+            }
+            
+            hideMessage();
+        }
+
+        function showMessage(msg, type) {
+            const el = document.getElementById('message');
+            el.textContent = msg;
+            el.className = type;
+            el.style.display = 'block';
+        }
+
+        function hideMessage() {
+            document.getElementById('message').style.display = 'none';
+        }
+
+        // Register
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+
+            try {
+                const res = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    showMessage('Registration successful! Please login.', 'success');
+                    document.getElementById('register-form').reset();
+                    setTimeout(() => switchTab('login'), 1500);
+                } else {
+                    showMessage(data.msg || 'Registration failed', 'error');
+                }
+            } catch (err) {
+                showMessage('Error connecting to server', 'error');
+            }
+        });
+
+        // Login (Just verifies credentials and stores them for Basic Auth)
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            // For this specific app structure, /api/auth/login returns a JWT token
+            // BUT /api/items uses Basic Auth middleware.
+            // So we will store the email/password for Basic Auth usage.
+            
+            // Let's verify credentials using the login endpoint first
+            try {
+                const res = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+                
+                if (res.ok) {
+                    currentUser = { email, password };
+                    showMessage('Login successful!', 'success');
+                    document.getElementById('login-form').reset();
+                    setTimeout(() => switchTab('items'), 1000);
+                } else {
+                    showMessage(data.msg || 'Invalid credentials', 'error');
+                }
+            } catch (err) {
+                showMessage('Error connecting to server', 'error');
+            }
+        });
+
+        // Fetch Items
+        async function fetchItems() {
+            if (!currentUser) return;
+            
+            const credentials = btoa(`${currentUser.email}:${currentUser.password}`);
+            
+            try {
+                const res = await fetch('/api/items', {
+                    headers: {
+                        'Authorization': `Basic ${credentials}`
+                    }
+                });
+                const data = await res.json();
+                
+                if (res.ok) {
+                    const list = document.getElementById('items-list');
+                    list.innerHTML = '';
+                    if (data.items && data.items.length > 0) {
+                        document.getElementById('no-items').classList.add('hidden');
+                        data.items.forEach(item => {
+                            const li = document.createElement('li');
+                            li.className = 'item';
+                            li.innerHTML = `
+                                <div>
+                                    <strong>${item.name || 'Unnamed'}</strong>
+                                    <div style="font-size: 0.875rem; color: var(--text-muted);">${item.description || ''}</div>
+                                </div>
+                            `;
+                            list.appendChild(li);
+                        });
+                    } else {
+                        document.getElementById('no-items').classList.remove('hidden');
+                    }
+                } else {
+                    showMessage(data.message || 'Failed to fetch items', 'error');
+                }
+            } catch (err) {
+                showMessage('Error fetching items', 'error');
+            }
+        }
+
+        // Add Item
+        document.getElementById('add-item-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!currentUser) {
+                showMessage('Please login first', 'error');
+                return;
+            }
+
+            const name = document.getElementById('item-name').value;
+            const description = document.getElementById('item-description').value;
+            const credentials = btoa(`${currentUser.email}:${currentUser.password}`);
+
+            try {
+                const res = await fetch('/api/items', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Basic ${credentials}`
+                    },
+                    body: JSON.stringify({ name, description }) // Assuming Item model has name/description
+                });
+                
+                if (res.ok) {
+                    document.getElementById('add-item-form').reset();
+                    fetchItems();
+                } else {
+                    const data = await res.json();
+                    showMessage(data.message || 'Failed to add item', 'error');
+                }
+            } catch (err) {
+                showMessage('Error adding item', 'error');
+            }
+        });
+    </script>
+</body>
+</html>
