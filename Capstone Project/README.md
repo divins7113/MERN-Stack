@@ -1,4 +1,4 @@
-# Capstone Project - Blog Management Platform
+# Project D2 - Role-Based Blog Management Platform
 
 This project is a MERN stack application with Admin, Blog Writer, and Reader roles.
 
