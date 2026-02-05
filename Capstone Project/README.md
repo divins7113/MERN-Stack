@@ -1,4 +1,4 @@
-# Capstone Project - News Platform
+# Capstone Project - Blog Management Platform
 
 This project is a MERN stack application with Admin, Blog Writer, and Reader roles.
 
